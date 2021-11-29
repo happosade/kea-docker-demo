@@ -4,10 +4,17 @@ services:
   mysql:
     image: docker.io/mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: kea
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
       MYSQL_DATABASE: kea
       MYSQL_USER: kea
       MYSQL_PASSWORD: kea
+    volumes:
+      - ./mysql:/docker-entrypoint-initdb.d:z
+    healthcheck:
+      test: [ "CMD-SHELL", 'mysqladmin ping' ]
+      interval: 10s
+      timeout: 2s
+      retries: 10
 
   kea:
     build: ./kea-dhcp4
@@ -22,7 +29,6 @@ services:
       - mysql
     ports:
       - 8000:8000
-      
   #Monitoring
   #prometheus:
   #  image: docker.io/prom/prometheus

@@ -12,7 +12,7 @@
     "lease-database": {
       "type": "mysql",
       "name": "kea",
-      "user": "root",
+      "user": "kea",
       "password": "kea",
       "host": "mysql",
       "port": 3306,
@@ -21,7 +21,7 @@
     "hosts-database": {
       "type": "mysql",
       "name": "kea",
-      "user": "root",
+      "user": "kea",
       "password": "kea",
       "host": "mysql",
       "port": 3306
