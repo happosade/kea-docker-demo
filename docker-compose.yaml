@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mysql:
+    image: docker.io/mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: kea
+      MYSQL_DATABASE: kea
+      MYSQL_USER: kea
+      MYSQL_PASSWORD: kea
+
+  kea:
+    build: ./kea-dhcp4
+    depends_on:
+      - mysql
+    ports:
+      - 6767:67
+
+  kea-ca:
+    build: ./kea-ca
+    depends_on:
+      - mysql
+    ports:
+      - 8000:8000
+      
+  #Monitoring
+  #prometheus:
+  #  image: docker.io/prom/prometheus
+  #
+  #mysql_exporter:
+  #  image: docker.io/prom/mysqld-exporter
+  #  depends_on:
+  #    - mysql
+  #
+  #grafana:
+  #  image: docker.io/grafana/grafana
+  #  depends_on:
+  #    - prometheus

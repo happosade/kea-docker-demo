@@ -1,0 +1,42 @@
+{
+  "Dhcp4": {
+    "interfaces-config": {
+      "interfaces": [
+        "*"
+      ]
+    },
+    "control-socket": {
+      "socket-type": "unix",
+      "socket-name": "/tmp/kea-dhcp4-ctrl.sock"
+    },
+    "lease-database": {
+      "type": "mysql",
+      "name": "kea",
+      "user": "kea",
+      "password": "kea",
+      "host": "mysql",
+      "port": 3306,
+      "connect-timeout": 5
+    },
+    "hosts-database": {
+      "type": "mysql",
+      "name": "kea",
+      "user": "kea",
+      "password": "kea",
+      "host": "mysql",
+      "port": 3306
+    },
+    "loggers": [
+      {
+        "name": "kea-dhcp4",
+        "output_options": [
+          {
+            "output": "stdout"
+          }
+        ],
+        "severity": "INFO",
+        "debuglevel": 0
+      }
+    ]
+  }
+}
